@@ -1,0 +1,17 @@
+<!-- views/coffee-detail.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= coffee.name %></title>
+  </head>
+  <body>
+    <h2><%= coffee.name %></h2>
+    <p>Description: <%= coffee.description %></p>
+    <p>Price: $<%= coffee.price %></p>
+    <p>Quantity: <%= coffee.quantity %></p>
+    <p>Coffee Type ID: <%= coffee.coffee_type_id %></p>
+    <a href="/coffees">Back to All Coffees</a>
+  </body>
+</html>

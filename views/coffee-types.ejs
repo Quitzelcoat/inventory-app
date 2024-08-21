@@ -1,0 +1,19 @@
+<!-- views/coffee-types.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Coffee Types</title>
+  </head>
+  <body>
+    <h2>All Coffee Types</h2>
+    <ul>
+      <% coffeeTypes.forEach(type => { %>
+      <li>
+        <a href="/coffee-types/<%= type.id %>"><%= type.name %></a>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
