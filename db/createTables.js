@@ -16,6 +16,7 @@ const coffeeSql = `
         description TEXT,
         price DECIMAL(10, 2) NOT NULL,
         quantity INT NOT NULL DEFAULT 0,
+        quality VARCHAR(100),
         coffee_type_id INT REFERENCES CoffeeType(id)
     );
 `;

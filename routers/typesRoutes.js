@@ -3,6 +3,11 @@ const express = require("express");
 const router = express.Router();
 const typesController = require("../controllers/typesController");
 
+// New route to render coffee type form
+router.get("/new", (req, res) => {
+  res.render("coffee-type-form");
+});
+
 router.get("/", typesController.getAllCoffeeTypes);
 router.get("/:id", typesController.getCoffeeTypeById);
 router.post("/", typesController.createCoffeeType);

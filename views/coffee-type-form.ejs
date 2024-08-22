@@ -1,0 +1,22 @@
+<!-- views/coffee-type-form.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Coffee Type</title>
+  </head>
+  <body>
+    <h1>Create New Coffee Type</h1>
+    <form action="/coffee-types" method="POST">
+      <label for="name">Coffee Type Name:</label>
+      <input type="text" id="name" name="name" required /><br />
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea><br />
+
+      <button type="submit">Add Coffee Type</button>
+    </form>
+    <button onclick="window.location.href='/'">Go Back</button>
+  </body>
+</html>

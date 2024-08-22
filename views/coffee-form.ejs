@@ -1,0 +1,36 @@
+<!-- views/coffee-form.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Coffee</title>
+  </head>
+  <body>
+    <h1>Create New Coffee</h1>
+    <form action="/coffees" method="POST">
+      <label for="name">Coffee Name:</label>
+      <input type="text" id="name" name="name" required /><br />
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea><br />
+
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price" step="0.01" required /><br />
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" required /><br />
+
+      <label for="coffee_type_id">Coffee Type ID:</label>
+      <input
+        type="number"
+        id="coffee_type_id"
+        name="coffee_type_id"
+        required
+      /><br />
+
+      <button type="submit">Add Coffee</button>
+    </form>
+    <button onclick="window.location.href='/'">Go Back</button>
+  </body>
+</html>

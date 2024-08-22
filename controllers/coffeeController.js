@@ -4,6 +4,7 @@ const {
   createCoffee,
   updateCoffee,
   deleteCoffee,
+  getAllCoffeeTypes,
 } = require("../db/quries");
 
 exports.allCoffee = async (req, res) => {
@@ -15,6 +16,16 @@ exports.coffeeById = async (req, res) => {
   const { id } = req.params;
   const coffee = await getCoffeeById(id);
   res.render("coffee-detail", { coffee });
+};
+
+exports.createCoffeeForm = async (req, res) => {
+  try {
+    const coffeeTypes = await getAllCoffeeTypes(); // Fetch coffee types
+    res.render("coffee-form", { coffeeTypes }); // Pass coffee types to the form
+  } catch (error) {
+    console.error("Error fetching coffee types:", error);
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 exports.createAllCoffee = async (req, res) => {
