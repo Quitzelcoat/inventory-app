@@ -23,7 +23,7 @@ exports.getCoffeeTypeById = async (req, res) => {
 exports.createCoffeeType = async (req, res) => {
   const { name, description } = req.body;
   const newCoffeeType = await createCoffeeType(name, description);
-  res.status(201).json(newCoffeeType);
+  res.redirect("/coffees/types");
 };
 
 // Update a coffee type

@@ -1,4 +1,3 @@
-<!-- views/coffee-form.ejs -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,13 +20,13 @@
       <label for="quantity">Quantity:</label>
       <input type="number" id="quantity" name="quantity" required /><br />
 
-      <label for="coffee_type_id">Coffee Type ID:</label>
-      <input
-        type="number"
-        id="coffee_type_id"
-        name="coffee_type_id"
-        required
-      /><br />
+      <label for="coffee_type_id">Coffee Type:</label>
+      <select id="coffee_type_id" name="coffee_type_id" required>
+        <option value="">Select Coffee Type</option>
+        <% coffeeTypes.forEach(function(type) { %>
+        <option value="<%= type.id %>"><%= type.name %></option>
+        <% }); %>
+      </select>
 
       <button type="submit">Add Coffee</button>
     </form>
