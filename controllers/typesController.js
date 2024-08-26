@@ -52,7 +52,6 @@ exports.deleteCoffeeType = async (req, res) => {
     res.send("Coffee type deleted successfully");
   } catch (error) {
     if (error.code === "23503") {
-      // Foreign key constraint violation
       res
         .status(400)
         .send(
