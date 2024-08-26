@@ -8,7 +8,7 @@
   <body>
     <h1><%= coffee ? 'Edit Coffee' : 'Create New Coffee' %></h1>
 
-    <form id="coffeeForm" action="/coffees/<%= coffee ? coffee.id : '' %>/edit" method="POST">
+    <form id="coffeeForm" action="<%= coffee ? '/coffees/' + coffee.id + '/edit' : '/coffees' %>" method="POST">
       <label for="name">Coffee Name:</label>
       <input type="text" id="name" name="name" value="<%= coffee ? coffee.name : '' %>" required /><br />
     

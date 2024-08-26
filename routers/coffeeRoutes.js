@@ -15,7 +15,7 @@ router.get("/", coffeeController.allCoffee);
 router.get("/:id", coffeeController.coffeeById);
 router.post("/", coffeeController.createAllCoffee);
 
-router.put("/:id/edit", coffeeController.updateAllCoffee);
+router.post("/:id/edit", coffeeController.updateAllCoffee);
 // router.delete("/:id", coffeeController.deleteAllCoffee);
 
 module.exports = router;

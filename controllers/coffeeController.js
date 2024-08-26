@@ -47,15 +47,33 @@ exports.showEditCoffeeForm = async (req, res) => {
 };
 
 exports.updateAllCoffee = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; // Get the id from the request params
   const { name, description, price, quantity, coffee_type_id } = req.body;
 
-  await updateCoffee(id, name, description, price, quantity, coffee_type_id);
-  res.redirect("/coffees");
+  // Convert id to an integer
+  const coffeeId = parseInt(id, 10);
+
+  try {
+    // Update coffee in the database
+    await updateCoffee(
+      coffeeId,
+      name,
+      description,
+      price,
+      quantity,
+      coffee_type_id
+    );
+    // Redirect to the coffee list or the updated coffee detail page
+    res.redirect(`/coffees/${coffeeId}`);
+  } catch (error) {
+    console.error("Error updating coffee:", error);
+    res.status(500).send("Error updating coffee");
+  }
 };
 
 exports.deleteAllCoffee = async (req, res) => {
   const { id } = req.params;
+  console.log(`Deleting coffee with ID: ${id}`);
   await deleteCoffee(id);
   res.send("Coffee deleted successfully");
 };

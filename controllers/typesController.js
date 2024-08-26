@@ -23,7 +23,7 @@ exports.getCoffeeTypeById = async (req, res) => {
 exports.createCoffeeType = async (req, res) => {
   const { name, description } = req.body;
   const newCoffeeType = await createCoffeeType(name, description);
-  res.redirect("/coffees/types");
+  res.redirect("/coffee-types");
 };
 
 exports.showEditCoffeeTypeForm = async (req, res) => {
@@ -36,13 +36,34 @@ exports.showEditCoffeeTypeForm = async (req, res) => {
 exports.updateCoffeeType = async (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
-  await updateCoffeeType(id, name, description);
-  res.redirect("/coffees/types");
+  const coffeeTypeId = parseInt(id, 10); // Convert to integer
+  console.log(
+    `Updating coffee type with ID: ${coffeeTypeId}, Name: ${name}, Description: ${description}`
+  );
+  await updateCoffeeType(coffeeTypeId, name, description);
+  res.redirect("/coffee-types");
 };
 
 // Delete a coffee type
 exports.deleteCoffeeType = async (req, res) => {
   const { id } = req.params;
-  await deleteCoffeeType(id);
-  res.send("Coffee type deleted successfully");
+  try {
+    await deleteCoffeeType(id);
+    res.send("Coffee type deleted successfully");
+  } catch (error) {
+    if (error.code === "23503") {
+      // Foreign key constraint violation
+      res
+        .status(400)
+        .send(
+          "Cannot delete this coffee type because it is still in use by existing coffee records."
+        );
+    } else {
+      // Handle other errors
+      console.error(error);
+      res
+        .status(500)
+        .send("An error occurred while trying to delete the coffee type.");
+    }
+  }
 };

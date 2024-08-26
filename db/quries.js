@@ -31,7 +31,7 @@ async function updateCoffee(
 ) {
   const { rows } = await pool.query(
     "UPDATE Coffee SET name = $1, description = $2, price = $3, quality = $4, coffee_type_id = $5 WHERE id = $6 RETURNING *",
-    [name, description, price, quality, coffee_type_id]
+    [name, description, price, quality, coffee_type_id, id]
   );
 
   return rows[0];
