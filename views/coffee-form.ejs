@@ -3,33 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Coffee</title>
+    <title><%= coffee ? 'Edit Coffee' : 'Create New Coffee' %></title>
   </head>
   <body>
-    <h1>Create New Coffee</h1>
-    <form action="/coffees" method="POST">
+    <h1><%= coffee ? 'Edit Coffee' : 'Create New Coffee' %></h1>
+
+    <form id="coffeeForm" action="/coffees/<%= coffee ? coffee.id : '' %>/edit" method="POST">
       <label for="name">Coffee Name:</label>
-      <input type="text" id="name" name="name" required /><br />
-
+      <input type="text" id="name" name="name" value="<%= coffee ? coffee.name : '' %>" required /><br />
+    
       <label for="description">Description:</label>
-      <textarea id="description" name="description" required></textarea><br />
-
+      <textarea id="description" name="description" required><%= coffee ? coffee.description : '' %></textarea><br />
+    
       <label for="price">Price:</label>
-      <input type="number" id="price" name="price" step="0.01" required /><br />
-
+      <input type="number" id="price" name="price" step="0.01" value="<%= coffee ? coffee.price : '' %>" required /><br />
+    
       <label for="quantity">Quantity:</label>
-      <input type="number" id="quantity" name="quantity" required /><br />
-
+      <input type="number" id="quantity" name="quantity" value="<%= coffee ? coffee.quantity : 0 %>" required /><br />
+    
       <label for="coffee_type_id">Coffee Type:</label>
       <select id="coffee_type_id" name="coffee_type_id" required>
         <option value="">Select Coffee Type</option>
         <% coffeeTypes.forEach(function(type) { %>
-        <option value="<%= type.id %>"><%= type.name %></option>
+          <option value="<%= type.id %>" <%= coffee && coffee.coffee_type_id === type.id ? 'selected' : '' %>><%= type.name %></option>
         <% }); %>
       </select>
-
-      <button type="submit">Add Coffee</button>
+    
+      <button type="submit"><%= coffee ? 'Update Coffee' : 'Add Coffee' %></button>
     </form>
-    <button onclick="window.location.href='/'">Go Back</button>
+    
+    <button onclick="window.location.href='/coffees'">Go Back</button>
   </body>
 </html>

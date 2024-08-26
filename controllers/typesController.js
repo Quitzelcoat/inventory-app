@@ -26,17 +26,23 @@ exports.createCoffeeType = async (req, res) => {
   res.redirect("/coffees/types");
 };
 
+exports.showEditCoffeeTypeForm = async (req, res) => {
+  const { id } = req.params;
+  const coffeeType = await getCoffeeTypeById(id);
+  res.render("coffee-type-form", { coffeeType }); // Render the coffee type form with current data
+};
+
 // Update a coffee type
 exports.updateCoffeeType = async (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
-  const updatedCoffeeType = await updateCoffeeType(id, name, description);
-  res.json(updatedCoffeeType);
+  await updateCoffeeType(id, name, description);
+  res.redirect("/coffees/types");
 };
 
 // Delete a coffee type
 exports.deleteCoffeeType = async (req, res) => {
   const { id } = req.params;
-  const deletedCoffeeType = await deleteCoffeeType(id);
+  await deleteCoffeeType(id);
   res.send("Coffee type deleted successfully");
 };

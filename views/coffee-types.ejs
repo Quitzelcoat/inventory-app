@@ -12,8 +12,21 @@
       <% coffeeTypes.forEach(type => { %>
       <li>
         <a href="/coffee-types/<%= type.id %>"><%= type.name %></a>
+
+        <form
+          action="/coffee-types/<%= type.id %>/delete"
+          method="POST"
+          style="display: inline"
+        >
+          <button type="submit">Delete</button>
+        </form>
+
+        <a href="/coffee-types/<%= type.id %>/edit">Edit</a>
       </li>
       <% }); %>
     </ul>
+
+    <a href="/coffee-types/new">Add New Coffee</a>
+    <a href="/">Main Page</a>
   </body>
 </html>
